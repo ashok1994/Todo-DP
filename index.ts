@@ -14,7 +14,7 @@ connect('mongodb://localhost:27017/test')
 
 
 (async function () {
-    try {
+    try {        
         await User.createUser('Ashok', 'askipop@gmail.com', 'password')
               .then(u => u.addTodo('Buy Apples'))
               .then(t => t.mark(true))

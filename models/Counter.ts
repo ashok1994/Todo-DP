@@ -4,10 +4,10 @@ import { ICounter, ICounterModel, CounterModel } from "../dbmodels/Counter.model
 
 export class Counter extends BaseModel implements ICounter {
 
-    counterFor: string;
-    count: number;
+    counterFor!: string;
+    count!: number;
     
-    protected setProps(c?: ICounter) {
+    protected setProps(c: ICounter) {
         this.count = c.count;
         this.counterFor = c.counterFor;
     } 

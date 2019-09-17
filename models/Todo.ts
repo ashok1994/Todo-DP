@@ -3,11 +3,11 @@ import { ITodo, ITodoModel, TodoModel } from "../dbmodels/Todo.model";
 import { Counter } from "./Counter";
 
 export class Todo extends BaseModel implements ITodo {
-    uid: string;
-    createdAt: number;
-    byUser: string;
-    text: string;
-    done: boolean;
+    uid!: string;
+    createdAt!: number;
+    byUser!: string;
+    text!: string;
+    done!: boolean;
 
 
     protected setProps(t: ITodo) {
@@ -27,7 +27,7 @@ export class Todo extends BaseModel implements ITodo {
         return todo;
     }
 
-    static async createTodo(byUser, text): Promise<Todo> {
+    static async createTodo(byUser: string, text: string): Promise<Todo> {
         const c: Counter = await Counter.nextCounter('Todo');
         const t: ITodo = {
             uid: 'TODO-' + c.getCount(),

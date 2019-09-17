@@ -4,11 +4,12 @@ import { Todo } from "./Todo";
 import { Counter } from "./Counter";
 
 export class User extends BaseModel implements IUser{
-    uid: string;
-    createdAt: number;
-    name: string;
-    email: string;
-    password: string;
+    uid!: string;
+    createdAt!: number;
+    name!: string;
+    email!: string;
+    password!: string;
+
 
     protected setProps(user: IUser) {
         this.uid = user.uid;
@@ -25,7 +26,6 @@ export class User extends BaseModel implements IUser{
     }
 
     static async createUser(name: string, email: string, password: string):Promise<User> {
-        
         const c:Counter = await Counter.nextCounter('User');
         const u:IUser = {
             uid: 'USER-'+ c.getCount(),
@@ -37,8 +37,7 @@ export class User extends BaseModel implements IUser{
         return User.create<IUser, IUserModel, User>(u, UserModel, User);
     }
 
-    static async findUser(query: any): Promise<User>{
-        let u: IUser | undefined = undefined;
+    static async findUser(query: any): Promise<User|undefined>{
         return User.find<IUserModel, User>(query, UserModel, User);
     }
 
