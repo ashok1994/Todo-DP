@@ -7,7 +7,7 @@ export class Counter extends BaseModel implements ICounter {
     counterFor: string;
     count: number;
     
-    protected setProps(c: ICounter) {
+    protected setProps(c?: ICounter) {
         this.count = c.count;
         this.counterFor = c.counterFor;
     } 

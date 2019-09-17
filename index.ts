@@ -1,5 +1,6 @@
 import { connect } from 'mongoose';
 import { User } from './models/User';
+import { Todo } from './models/Todo';
 
 
 
