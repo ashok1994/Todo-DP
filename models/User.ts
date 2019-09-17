@@ -1,6 +1,7 @@
 import { IUser, IUserModel, UserModel } from "../dbmodels/User.model";
 import { BaseModel } from "./BaseModel";
 import { Todo } from "./Todo";
+import { Counter } from "./Counter";
 
 export class User extends BaseModel implements IUser{
     uid: string;
@@ -23,9 +24,11 @@ export class User extends BaseModel implements IUser{
         return u;
     }
 
-    static async createUser(uid, name, email, password):Promise<User> {
+    static async createUser(name: string, email: string, password: string):Promise<User> {
+        
+        const c:Counter = await Counter.nextCounter('User');
         const u:IUser = {
-            uid: uid,
+            uid: 'USER-'+ c.getCount(),
             name: name,
             email: email,
             password: password,
@@ -41,7 +44,6 @@ export class User extends BaseModel implements IUser{
 
     async addTodo(text: string): Promise<Todo>{
         return Todo.createTodo(this.uid, text);
-    }
-    
+    }        
 }
 

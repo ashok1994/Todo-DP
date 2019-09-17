@@ -1,6 +1,7 @@
 import { Document, Schema, Model, model } from "mongoose";
 
 export interface ITodo {
+    uid: string;
     createdAt: number;
     byUser: string;
     text: string;
@@ -10,7 +11,8 @@ export interface ITodo {
 
 export interface ITodoModel extends ITodo, Document {}
 
-export const TodoSchema: Schema = new Schema({ 
+export const TodoSchema: Schema = new Schema({
+    uid: String, 
     createdAt: Number,
     byUser: String,
     text: String,
