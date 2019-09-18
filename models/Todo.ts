@@ -43,5 +43,4 @@ export class Todo extends BaseModel implements ITodo {
     async mark(done: boolean): Promise<Todo> {
         return Todo.findOneAndUpdate<ITodoModel, Todo>({ uid: this.uid }, { done: done }, TodoModel, Todo);
     }
-
 }

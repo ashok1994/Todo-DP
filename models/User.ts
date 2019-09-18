@@ -2,6 +2,7 @@ import { IUser, IUserModel, UserModel } from "../dbmodels/User.model";
 import { BaseModel } from "./BaseModel";
 import { Todo } from "./Todo";
 import { Counter } from "./Counter";
+import { ITodoModel, TodoModel } from "../dbmodels/Todo.model";
 
 export class User extends BaseModel implements IUser{
     uid!: string;
@@ -43,6 +44,10 @@ export class User extends BaseModel implements IUser{
 
     async addTodo(text: string): Promise<Todo>{
         return Todo.createTodo(this.uid, text);
-    }        
+    }
+
+    async getTodos():Promise<Todo[]> {
+        return Todo.findAll<ITodoModel, Todo>({ byUser: this.uid}, TodoModel, Todo);
+    }
 }
 
