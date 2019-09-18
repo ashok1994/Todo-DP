@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 
 const app = express();
 import { connect, ConnectionStates } from 'mongoose';
@@ -40,12 +40,13 @@ app.get('/', async (req, res, next) => {
 
 
 
-app.use(function(err, req, res, next) {
-    console.log(err);   
+app.use(function(err:Error, req:Request, res:Response, next:()=>void) {
     if(err instanceof DBError) {
         console.log(err.stack);
-        res.status(500).send({ error: { message: err.message }});
+        return res.status(500).send({ error: { message: err.message}});
     }
+
+    
 });
 
 
